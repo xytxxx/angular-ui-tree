@@ -46,6 +46,10 @@
     "test:e2e": "protractor",
     "test": "gulp build && npm run test:e2e",
     "coveralls": "cat ./coverage/lcov/lcov.info | coveralls",
-    "codacy": "cat ./coverage/lcov/lcov.info | codacy-coverage --verbose"
+    "codacy": "cat ./coverage/lcov/lcov.info | codacy-coverage --verbose",
+    "start": "http-server ./"
+  },
+  "dependencies": {
+    "http-server": "^0.11.1"
   }
 }

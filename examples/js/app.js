@@ -37,11 +37,13 @@
           controller: 'ExpandOnHoverCtrl',
           templateUrl: 'views/expand-on-hover.html'
         })
+        .when('/multi-select', {
+          controller: 'MultiSelectCtrl',
+          templateUrl: 'views/multi-select.html'
+        })
         .otherwise({
           redirectTo: '/basic-example'
         });
 
-      // testing issue #521
-      $compileProvider.debugInfoEnabled(false);
     }]);
 })();
