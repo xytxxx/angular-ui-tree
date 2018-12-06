@@ -12,23 +12,6 @@
       $scope.multiSelectNodeEnds = [];
       $scope.multiSelectNodeEndIds = [];
 
-      function isChildOfNodes (nodes, id, path) {
-        for (node of nodes) {
-          let result = isChildOfNode(node, id, path);
-          if (result != 'no') return result;
-        }        
-        return 'no';
-      }
-
-      function isChildOfNode (node, id, path) {
-        path.push(node);
-        if (node.id === id) return path;
-        
-      }
-
-      function findPathToNode (id) {
-        var path = [];
-      }
 
       function siblingsOfNormalNode (node) {
         var path = findPathToNode(node.id);

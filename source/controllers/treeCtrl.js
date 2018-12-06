@@ -21,6 +21,7 @@
         $scope.cloneEnabled = false;
         $scope.nodropEnabled = false;
         $scope.dropzoneEnabled = false;
+        $scope.multiSelectMode = false;
 
         // Check if it's a empty tree
         $scope.isEmpty = function () {
@@ -51,6 +52,31 @@
             $scope.$dropzoneElm.remove();
           }
         };
+
+        function isChildOfNodes (nodesScope, id, path) {
+          let lengthWhenHere = path.length;
+          for (var nodeScope of nodesScope.childNodes()) {
+            path.length = lengthWhenHere;
+            let result = isChildOfNode(nodeScope, id, path);
+            if (result != '') return result;
+          }        
+          return '';
+        }
+
+        function isChildOfNode (nodeScope, id, path) {
+          let node = nodeScope.$modelValue;
+          path.push(node);
+          if (node.id === id) return path;
+          return isChildOfNodes (nodeScope.$childNodesScope, id, path);
+        }
+
+        $scope.findPathToNodeById = function (nodeId) {
+          return isChildOfNodes($scope.$nodesScope, nodeId, []);
+        }
+
+        $scope.toggleMultiSelectMode = function () {
+          $scope.multiSelectMode = !$scope.multiSelectMode;
+        }
 
         $scope.resetEmptyElement = this.resetEmptyElement;
         $scope.resetDropzoneElement = this.resetDropzoneElement;
